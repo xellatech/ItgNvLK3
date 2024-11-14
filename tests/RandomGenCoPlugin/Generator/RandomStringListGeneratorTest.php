@@ -7,6 +7,7 @@ namespace App\Tests\RandomGenCoPlugin\Generator;
 use App\Tests\Base\AbstractTestCase;
 use XellaTech\RandomGenCoPlugin\Factory\GeneratorResultFactoryInterface;
 use XellaTech\RandomGenCoPlugin\Generator\RandomStringListGenerator;
+use XellaTech\RandomGenCoPlugin\Model\GeneratorResultInterface;
 
 class RandomStringListGeneratorTest extends AbstractTestCase
 {
@@ -20,9 +21,12 @@ class RandomStringListGeneratorTest extends AbstractTestCase
             $this->container->get('xella_tech.generator.string_list'),
             $length
         );
-        $generatorResult = $generator->generate()->getResultList();
+        $generatorResult = $generator->generate();
 
-        $this->assertEquals(count($generatorResult), $length);
+        // Check if result object is same as expected
+        $this->assertInstanceOf(GeneratorResultInterface::class, $generatorResult);
+
+        $this->assertEquals(count($generatorResult->getResultList()), $length);
     }
 
     private function sizeScenario(): array

@@ -7,6 +7,7 @@ namespace App\Tests\RandomGenCoPlugin\Generator;
 use App\Tests\Base\AbstractTestCase;
 use XellaTech\RandomGenCoPlugin\Factory\GeneratorResultFactoryInterface;
 use XellaTech\RandomGenCoPlugin\Generator\RandomStringGenerator;
+use XellaTech\RandomGenCoPlugin\Model\GeneratorResultInterface;
 
 class RandomStringGeneratorTest extends AbstractTestCase
 {
@@ -20,9 +21,12 @@ class RandomStringGeneratorTest extends AbstractTestCase
             $this->container->getParameter('xella_tech.param.generator_item.pattern'),
             $length
         );
-        $generatorResult = $generator->generate()->getResult();
+        $generatorResult = $generator->generate();
 
-        $this->assertEquals(strlen($generatorResult), $length);
+        // Check if result object is same as expected
+        $this->assertInstanceOf(GeneratorResultInterface::class, $generatorResult);
+
+        $this->assertEquals(strlen($generatorResult->getResult()), $length);
     }
 
     private function lengthScenario(): array
@@ -53,14 +57,17 @@ class RandomStringGeneratorTest extends AbstractTestCase
             $pattern,
             $this->container->getParameter('xella_tech.param.generator_item.length')
         );
-        $generatorResult = $generator->generate()->getResult();
+        $generatorResult = $generator->generate();
+
+        // Check if result object is same as expected
+        $this->assertInstanceOf(GeneratorResultInterface::class, $generatorResult);
 
         if (null !== $matchPattern) {
-            $this->assertMatchesRegularExpression($matchPattern, $generatorResult);
+            $this->assertMatchesRegularExpression($matchPattern, $generatorResult->getResult());
         }
 
         if (null !== $noMatchPattern) {
-            $this->assertDoesNotMatchRegularExpression($noMatchPattern, $generatorResult);
+            $this->assertDoesNotMatchRegularExpression($noMatchPattern, $generatorResult->getResult());
         }
     }
 
