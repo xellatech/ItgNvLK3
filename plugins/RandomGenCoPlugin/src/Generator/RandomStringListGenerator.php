@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace XellaTech\RandomGenCoPlugin\Generator;
 
 use XellaTech\RandomGenCoPlugin\Factory\GeneratorResultFactoryInterface;
-use XellaTech\RandomGenCoPlugin\Generator\GeneratorInterface;
 use XellaTech\RandomGenCoPlugin\Model\GeneratorResultInterface;
 
 class RandomStringListGenerator implements GeneratorInterface
@@ -21,7 +20,7 @@ class RandomStringListGenerator implements GeneratorInterface
     {
         $result = [];
 
-        for ($i = 0; $i < $this->listLength; $i++) {
+        for ($i = 0; $i < $this->listLength; ++$i) {
             $result[] = $this->randomStringGenerator->generate()->getResult();
         }
 

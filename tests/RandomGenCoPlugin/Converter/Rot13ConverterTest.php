@@ -15,7 +15,7 @@ class Rot13ConverterTest extends AbstractTestCase
      */
     public function testRot13Conversion(
         string $textToConvert,
-        ?string $expectedText
+        ?string $expectedText,
     ): void {
         /** @var ConverterInterface $converter */
         $converter = $this->container->get('xella_tech.converter.rot13');

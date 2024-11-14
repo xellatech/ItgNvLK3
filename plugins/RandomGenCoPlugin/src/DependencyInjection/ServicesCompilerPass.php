@@ -12,9 +12,6 @@ use XellaTech\RandomGenCoPlugin\Provider\RandomConverterProviderInterface;
 
 class ServicesCompilerPass implements CompilerPassInterface
 {
-    /**
-     * @param ContainerBuilder $container
-     */
     public function process(ContainerBuilder $container): void
     {
         $this->registerGenerators($container);
@@ -31,7 +28,7 @@ class ServicesCompilerPass implements CompilerPassInterface
         $taggedGenerators = $container->findTaggedServiceIds('xella_tech.generator');
 
         foreach ($taggedGenerators as $id => $tags) {
-            $builderDefinition->addMethodCall('addGenerator', [(new Reference($id))]);
+            $builderDefinition->addMethodCall('addGenerator', [new Reference($id)]);
         }
     }
 
@@ -45,7 +42,7 @@ class ServicesCompilerPass implements CompilerPassInterface
         $taggedConverters = $container->findTaggedServiceIds('xella_tech.converter');
 
         foreach ($taggedConverters as $id => $tags) {
-            $builderDefinition->addMethodCall('addConverter', [(new Reference($id))]);
+            $builderDefinition->addMethodCall('addConverter', [new Reference($id)]);
         }
     }
 }

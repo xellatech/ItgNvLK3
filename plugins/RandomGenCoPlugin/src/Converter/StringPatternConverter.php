@@ -19,7 +19,7 @@ class StringPatternConverter implements ConverterInterface
         $pattern = '/[a-z]/i';
         $convertedText = '';
 
-        for ($i = 0; $i < strlen($text); $i++) {
+        for ($i = 0; $i < strlen($text); ++$i) {
             $value = $text[$i];
             preg_match($pattern, $value, $matches);
 

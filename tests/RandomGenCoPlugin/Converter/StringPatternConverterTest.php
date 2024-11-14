@@ -15,7 +15,7 @@ class StringPatternConverterTest extends AbstractTestCase
      */
     public function testStringConversion(
         string $textToConvert,
-        ?string $expectedText
+        ?string $expectedText,
     ): void {
         /** @var ConverterInterface $converter */
         $converter = $this->container->get('xella_tech.converter.string_pattern');

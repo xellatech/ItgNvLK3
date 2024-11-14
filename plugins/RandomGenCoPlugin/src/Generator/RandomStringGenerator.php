@@ -21,7 +21,7 @@ class RandomStringGenerator implements GeneratorInterface
         $chsLength = strlen($this->pattern);
         $result = '';
 
-        for ($i = 0; $i < $this->length; $i++) {
+        for ($i = 0; $i < $this->length; ++$i) {
             $result .= $this->pattern[random_int(0, $chsLength - 1)];
         }
 

@@ -17,7 +17,6 @@ class RandomStringGeneratorTest extends AbstractTestCase
     public function testRandomStringGeneratorLength(int $length): void
     {
         /** @var GeneratorInterface $generator */
-
         $generator = new RandomStringGenerator(
             $this->container->get(GeneratorResultFactoryInterface::class),
             $this->container->getParameterBag()->get('xella_tech.param.generator_item.pattern'),
@@ -39,7 +38,7 @@ class RandomStringGeneratorTest extends AbstractTestCase
             ],
             [
                 0,
-            ]
+            ],
         ];
     }
 
@@ -49,10 +48,9 @@ class RandomStringGeneratorTest extends AbstractTestCase
     public function testRandomStringGeneratorPattern(
         string $pattern,
         ?string $matchPattern,
-        ?string $noMatchPattern
+        ?string $noMatchPattern,
     ): void {
         /** @var GeneratorInterface $generator */
-
         $generator = new RandomStringGenerator(
             $this->container->get(GeneratorResultFactoryInterface::class),
             $pattern,
