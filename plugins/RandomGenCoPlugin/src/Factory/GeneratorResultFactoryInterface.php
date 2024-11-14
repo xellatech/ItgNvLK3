@@ -12,5 +12,8 @@ interface GeneratorResultFactoryInterface
 
     public function createForResultIem(string $result): GeneratorResultInterface;
 
+    /**
+     * @param array<string> $result
+     */
     public function createForResultList(array $result): GeneratorResultInterface;
 }

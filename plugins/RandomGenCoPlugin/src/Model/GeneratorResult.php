@@ -10,6 +10,9 @@ class GeneratorResult implements GeneratorResultInterface
 
     protected ?string $result = null;
 
+    /**
+     * @var array<string>
+     */
     protected array $resultList = [];
 
     public function getType(): string
@@ -32,11 +35,17 @@ class GeneratorResult implements GeneratorResultInterface
         $this->result = $result;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getResultList(): array
     {
         return $this->resultList;
     }
 
+    /**
+     * @param array<string> $resultList
+     */
     public function setResultList(array $resultList): void
     {
         $this->resultList = $resultList;

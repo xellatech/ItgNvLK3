@@ -18,6 +18,9 @@ class CompositeGeneratorCollection implements CompositeGeneratorCollectionInterf
         $this->generators[] = $generator;
     }
 
+    /**
+     * @return array|GeneratorInterface[]
+     */
     public function getGenerators(): array
     {
         return $this->generators;

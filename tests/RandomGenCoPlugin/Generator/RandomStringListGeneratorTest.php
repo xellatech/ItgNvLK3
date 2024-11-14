@@ -6,7 +6,6 @@ namespace App\Tests\RandomGenCoPlugin\Generator;
 
 use App\Tests\Base\AbstractTestCase;
 use XellaTech\RandomGenCoPlugin\Factory\GeneratorResultFactoryInterface;
-use XellaTech\RandomGenCoPlugin\Generator\GeneratorInterface;
 use XellaTech\RandomGenCoPlugin\Generator\RandomStringListGenerator;
 
 class RandomStringListGeneratorTest extends AbstractTestCase
@@ -16,7 +15,6 @@ class RandomStringListGeneratorTest extends AbstractTestCase
      */
     public function testRandomStringListSize(int $length): void
     {
-        /** @var GeneratorInterface $generator */
         $generator = new RandomStringListGenerator(
             $this->container->get(GeneratorResultFactoryInterface::class),
             $this->container->get('xella_tech.generator.string_list'),

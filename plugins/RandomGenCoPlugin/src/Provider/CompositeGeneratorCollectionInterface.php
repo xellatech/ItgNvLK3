@@ -10,5 +10,8 @@ interface CompositeGeneratorCollectionInterface
 {
     public function addGenerator(GeneratorInterface $generator): void;
 
+    /**
+     * @return array|GeneratorInterface[]
+     */
     public function getGenerators(): array;
 }

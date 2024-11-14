@@ -6,7 +6,6 @@ namespace App\Tests\RandomGenCoPlugin\Generator;
 
 use App\Tests\Base\AbstractTestCase;
 use XellaTech\RandomGenCoPlugin\Factory\GeneratorResultFactoryInterface;
-use XellaTech\RandomGenCoPlugin\Generator\GeneratorInterface;
 use XellaTech\RandomGenCoPlugin\Generator\RandomStringGenerator;
 
 class RandomStringGeneratorTest extends AbstractTestCase
@@ -16,10 +15,9 @@ class RandomStringGeneratorTest extends AbstractTestCase
      */
     public function testRandomStringGeneratorLength(int $length): void
     {
-        /** @var GeneratorInterface $generator */
         $generator = new RandomStringGenerator(
             $this->container->get(GeneratorResultFactoryInterface::class),
-            $this->container->getParameterBag()->get('xella_tech.param.generator_item.pattern'),
+            $this->container->getParameter('xella_tech.param.generator_item.pattern'),
             $length
         );
         $generatorResult = $generator->generate()->getResult();
@@ -50,11 +48,10 @@ class RandomStringGeneratorTest extends AbstractTestCase
         ?string $matchPattern,
         ?string $noMatchPattern,
     ): void {
-        /** @var GeneratorInterface $generator */
         $generator = new RandomStringGenerator(
             $this->container->get(GeneratorResultFactoryInterface::class),
             $pattern,
-            $this->container->getParameterBag()->get('xella_tech.param.generator_item.length')
+            $this->container->getParameter('xella_tech.param.generator_item.length')
         );
         $generatorResult = $generator->generate()->getResult();
 

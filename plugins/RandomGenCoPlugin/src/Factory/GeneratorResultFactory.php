@@ -23,6 +23,9 @@ class GeneratorResultFactory implements GeneratorResultFactoryInterface
         return $generatorResult;
     }
 
+    /**
+     * @param array<string> $result
+     */
     public function createForResultList(array $result): GeneratorResultInterface
     {
         $generatorResult = $this->createNew();

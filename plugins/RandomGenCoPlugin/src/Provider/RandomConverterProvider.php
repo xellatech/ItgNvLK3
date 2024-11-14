@@ -9,7 +9,7 @@ use XellaTech\RandomGenCoPlugin\Converter\ConverterInterface;
 class RandomConverterProvider implements RandomConverterProviderInterface
 {
     /**
-     * @var array|ConverterInterface
+     * @var array|ConverterInterface[]
      */
     private array $converters = [];
 

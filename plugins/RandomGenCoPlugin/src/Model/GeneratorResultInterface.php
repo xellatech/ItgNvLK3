@@ -18,7 +18,13 @@ interface GeneratorResultInterface
 
     public function setResult(?string $result): void;
 
+    /**
+     * @return array<string>
+     */
     public function getResultList(): array;
 
+    /**
+     * @param array<string> $resultList
+     */
     public function setResultList(array $resultList): void;
 }
