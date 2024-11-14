@@ -14,5 +14,5 @@ $ docker-compose exec console_app composer analyse
 $ docker-compose exec console_app bin/phpunit tests/
 
 # To test composite generators and converters
-$ bin/console app:gen-con:process
+$ docker-compose exec console_app bin/console app:gen-con:process
 ```
