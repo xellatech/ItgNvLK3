@@ -17,7 +17,6 @@ RUN apt-get install -y \
     wkhtmltopdf \
     libzip-dev \
     zip \
-    nginx \
     cron
 
 EXPOSE 80
@@ -56,23 +55,3 @@ RUN apt-get install -y \
           --with-jpeg \
     && docker-php-ext-install gd \
     && docker-php-ext-enable gd
-
-
-# install yarn TODO: separate container
-RUN apt-get update || apt-get update
-RUN apt-get install -y \
-    gnupg \
-    apt-transport-https
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get install -y nodejs \
-        yarn
-
-RUN useradd -ms /bin/bash www
-RUN usermod -aG sudo www
-
-WORKDIR /var/www/html
-
-RUN chown -R www-data:www-data /var/www/html
