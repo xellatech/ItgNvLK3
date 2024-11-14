@@ -8,9 +8,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use XellaTech\RandomGenCoPlugin\Generator\GeneratorInterface;
-use XellaTech\RandomGenCoPlugin\Provider\CompositeGeneratorCollectionInterface;
 use XellaTech\RandomGenCoPlugin\Model\ConverterResultInterface;
 use XellaTech\RandomGenCoPlugin\Model\GeneratorResultInterface;
+use XellaTech\RandomGenCoPlugin\Provider\CompositeGeneratorCollectionInterface;
 use XellaTech\RandomGenCoPlugin\Provider\RandomConverterProviderInterface;
 
 class GenConProcessingCommand extends Command
@@ -38,16 +38,15 @@ class GenConProcessingCommand extends Command
         array_map(function (GeneratorInterface $generator) use (&$stackedResults) {
             $result = $generator->generate();
 
-            if ($result->getType() === GeneratorResultInterface::TYPE_RESULT_ITEM) {
+            if (GeneratorResultInterface::TYPE_RESULT_ITEM === $result->getType()) {
                 $stackedResults[] = $this->randomConverterProvider->getRandomConverter()->convert($result->getResult());
             }
 
-            if ($result->getType() === GeneratorResultInterface::TYPE_RESULT_LIST) {
+            if (GeneratorResultInterface::TYPE_RESULT_LIST === $result->getType()) {
                 foreach ($result->getResultList() as $resultValue) {
                     $stackedResults[] = $this->randomConverterProvider->getRandomConverter()->convert($resultValue);
                 }
             }
-
         }, $this->compositeGeneratorCollection->getGenerators());
 
         /** @var ConverterResultInterface $stackedResult */
