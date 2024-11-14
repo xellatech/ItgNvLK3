@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+    console_app:
+        build:
+            context: php8-fpm
+            args:
+                TIMEZONE: ${TIMEZONE}
+        ports:
+            - 8087:80
+        volumes:
+            - ${SYMFONY_APP_PATH}:/var/www/html
+        networks:
+            - rand-generator-network
+networks:
+    rand-generator-network:
+        driver: bridge

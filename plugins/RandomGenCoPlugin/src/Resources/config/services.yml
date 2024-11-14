@@ -1,0 +1,48 @@
+parameters:
+  xella_tech.param.generator_item.length: 8
+  xella_tech.param.generator_item.pattern: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+  xella_tech.param.generator_list.list_length: 3
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  XellaTech\RandomGenCoPlugin\:
+    resource: '../../*'
+    exclude: '../../{Tests,DependencyInjection,Model,Exception}'
+
+  xella_tech.generator.string_item:
+    class: XellaTech\RandomGenCoPlugin\Generator\RandomStringGenerator
+    arguments:
+      $pattern: '%xella_tech.param.generator_item.pattern%'
+      $length: '%xella_tech.param.generator_item.length%'
+    tags:
+      - { name: xella_tech.generator }
+
+  xella_tech.generator.string_list:
+    class: XellaTech\RandomGenCoPlugin\Generator\RandomStringListGenerator
+    arguments:
+      $randomStringGenerator: '@xella_tech.generator.string_item'
+      $listLength: '%xella_tech.param.generator_list.list_length%'
+    tags:
+      - { name: xella_tech.generator }
+
+  xella_tech.converter.string_pattern:
+    class: XellaTech\RandomGenCoPlugin\Converter\StringPatternConverter
+    tags:
+      - { name: xella_tech.converter }
+
+  xella_tech.converter.rot13:
+    class: XellaTech\RandomGenCoPlugin\Converter\Rot13Converter
+    tags:
+      - { name: xella_tech.converter }
+
+  XellaTech\RandomGenCoPlugin\Provider\CompositeGeneratorCollectionInterface:
+    class: XellaTech\RandomGenCoPlugin\Provider\CompositeGeneratorCollection
+    public: true
+
+  XellaTech\RandomGenCoPlugin\Provider\RandomConverterProviderInterface:
+    class: XellaTech\RandomGenCoPlugin\Provider\RandomConverterProvider
+    public: true
